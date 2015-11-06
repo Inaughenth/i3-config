@@ -10,10 +10,6 @@ fi
 # so all binaries are visible in dmenu_run
 export PATH="$PATH:$HOME/.i3/bin:$HOME/.bin:$HOME/bin"
 
-# logging in with dock
-lsusb | grep -q "ThinkPad Mini Dock"
-[ "$?" -eq 0 ] && $HOME/.i3/dockery.sh dock &
-
 # use xresources
 xrdb -merge ~/.i3/xresources
 
@@ -23,11 +19,8 @@ xrdb -merge ~/.i3/xresources
 # background
 [ -e ~/.fehbg ] && source ~/.fehbg
 
-# hide mouse coursor when it isn't used
-unclutter -root -visible &
-
 # pulse audio session
-start-pulseaudio-x11
+#start-pulseaudio-x11
 
 # keyboard layout
 xmodmap ~/.i3/xmodmap
@@ -39,14 +32,8 @@ redshift -l 54.35:18.65 -m randr -t 5500:4500 -g 0.75:0.75:0.75 &
 # notification
 dunst -config ~/.i3/dunstrc &
 
-# disks automounting
-udiskie &
-
 # terminal server
 urxvtd &
-
-# dropbox
-[ -e /usr/bin/dropboxd ] && /usr/bin/dropboxd &
 
 # gpg agent
 export SSH_AUTH_SOCK="${HOME}/.gnupg/S.gpg-agent.ssh"
